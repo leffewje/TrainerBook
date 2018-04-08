@@ -27,6 +27,10 @@ public class CustomerGroup {
         }
     }
 
+    public void addCustomer(Customer c) {
+        mCustomers.add(c);
+    }
+
     public List<Customer> getCustomers() {
         return mCustomers;
     }

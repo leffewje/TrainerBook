@@ -16,6 +16,12 @@ public class Customer {
         mId = UUID.randomUUID();
         mDate = new Date();
         mSessions = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            Session session = new Session();
+            session.setTitle("Session #" + i);
+            session.setComplete(i % 2 == 0);
+            mSessions.add(session);
+        }
     }
 
     public UUID getId() {

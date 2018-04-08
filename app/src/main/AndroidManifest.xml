@@ -17,19 +17,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CustomerListActivity"></activity>
-        <activity android:name=".CustomerActivity" />
-        <activity android:name=".ReceiptActivity" />
-        <activity
-            android:name=".LoginActivity"
-            android:label="@string/title_activity_login">
+        <activity android:name=".CustomerListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter></activity>
+        <activity android:name=".CustomerActivity"
+            android:parentActivityName=".CustomerListActivity"/>
+        <activity android:name=".ReceiptActivity"
+            android:parentActivityName=".CustomerListActivity"/>
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/title_activity_login">
         </activity>
-        <activity android:name=".SessionActivity"></activity>
+        <activity android:name=".SessionActivity"
+            android:parentActivityName=".CustomerListActivity"></activity>
+        <activity android:name=".SessionListActivity"></activity>
     </application>
 
 </manifest>

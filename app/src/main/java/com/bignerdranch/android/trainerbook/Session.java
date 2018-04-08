@@ -8,6 +8,7 @@ public class Session {
     private String mTitle;
     private Date mDate;
     private boolean mComplete;
+    private String mSign;
 
     public Session() {
         mId = UUID.randomUUID();
@@ -40,5 +41,13 @@ public class Session {
 
     public void setComplete(boolean complete) {
         mComplete = complete;
+    }
+
+    public String getSign() {
+        return mSign;
+    }
+
+    public void setSign(String sign) {
+        mSign = sign;
     }
 }

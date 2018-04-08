@@ -5,8 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <fragment
-        android:id="@+id/fragment2"
+        android:id="@+id/fragment3"
         android:name="com.bignerdranch.android.trainerbook.LoggedInFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
@@ -15,36 +16,35 @@
         style="?android:listSeparatorTextViewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/customer_name_label" />
+        android:text="@string/session_label"/>
 
     <EditText
-        android:id="@+id/customer_name"
+        android:id="@+id/session_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/customer_name_hint" />
-
-    <TextView
-        style="?android:listSeparatorTextViewStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/customer_info_label" />
+        android:hint="@string/session_hint"/>
 
     <Button
-        android:id="@+id/customer_date"
+        android:id="@+id/session_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <EditText
-        android:id="@+id/billing"
+    <CheckBox
+        android:id="@+id/session_complete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/billing_hint"/>
+        android:text="@string/session_completed_text"/>
 
-    <fragment
-        android:id="@+id/fragment4"
-        android:name="com.bignerdranch.android.trainerbook.SessionListFragment"
+    <EditText
+        android:id="@+id/signature_box"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:hint="@string/sign_here" />
 
+    <Button
+        android:id="@+id/receipt_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/generate_receipt" />
 
 </LinearLayout>
