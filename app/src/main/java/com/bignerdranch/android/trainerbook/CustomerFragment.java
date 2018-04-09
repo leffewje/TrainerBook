@@ -1,5 +1,6 @@
 package com.bignerdranch.android.trainerbook;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -19,6 +20,7 @@ public class CustomerFragment extends Fragment {
     private EditText mNameField;
     private Button mDateButton;
     private EditText mBilling;
+    private Button mSaveButton;
 
     public static CustomerFragment newInstance(UUID customerId) {
         Bundle args = new Bundle();
@@ -34,6 +36,14 @@ public class CustomerFragment extends Fragment {
         super.onCreate(savedInstanceState);
         UUID customerId = (UUID) getArguments().getSerializable(ARG_CUSTOMER_ID);
         mCustomer = CustomerGroup.get(getActivity()).getCustomer(customerId);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        CustomerGroup.get(getActivity())
+                .updateCustomer(mCustomer);
     }
 
     @Override
@@ -82,6 +92,14 @@ public class CustomerFragment extends Fragment {
             }
         });
 
+        mSaveButton = (Button) v.findViewById(R.id.save_button);
+        mSaveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent2 = new Intent(getActivity(), CustomerListActivity.class);
+                startActivity(intent2);
+            }
+        });
 
         return v;
     }

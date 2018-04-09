@@ -10,18 +10,24 @@ public class Customer {
     private String mName;
     private Date mDate;
     private String mBilling;
-    private List<Session> mSessions;
+    //private List<Session> mSessions;
 
     public Customer() {
-        mId = UUID.randomUUID();
-        mDate = new Date();
-        mSessions = new ArrayList<>();
+        this(UUID.randomUUID());
+        //mId = UUID.randomUUID();
+        //mDate = new Date();
+        /*mSessions = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             Session session = new Session();
             session.setTitle("Session #" + i);
             session.setComplete(i % 2 == 0);
             mSessions.add(session);
-        }
+        }*/
+    }
+
+    public Customer(UUID id) {
+        mId = id;
+        mDate = new Date();
     }
 
     public UUID getId() {
@@ -52,7 +58,7 @@ public class Customer {
         mBilling = billing;
     }
 
-    public List<Session> getSessions() {
+    /*public List<Session> getSessions() {
         return mSessions;
     }
 
@@ -64,5 +70,5 @@ public class Customer {
         }
 
         return null;
-    }
+    }*/
 }

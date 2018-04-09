@@ -37,4 +37,5 @@
     <string name="sign_here">Sign here</string>
     <string name="generate_receipt">Generate Receipt</string>
     <string name="new_session">New Session</string>
+    <string name="save_button">Save</string>
 </resources>
