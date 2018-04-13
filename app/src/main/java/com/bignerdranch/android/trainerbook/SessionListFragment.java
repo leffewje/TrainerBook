@@ -80,6 +80,7 @@ public class SessionListFragment extends Fragment {
             mAdapter = new SessionAdapter(sessions);
             mSessionRecyclerView.setAdapter(mAdapter);
         } else {
+            mAdapter.setSessions(sessions);
             mAdapter.notifyDataSetChanged();
         }
     }
@@ -135,6 +136,10 @@ public class SessionListFragment extends Fragment {
         @Override
         public int getItemCount(){
             return mSessions.size();
+        }
+
+        public void setSessions(List<Session> sessions) {
+            mSessions = sessions;
         }
     }
 }

@@ -11,7 +11,13 @@ public class Session {
     private String mSign;
 
     public Session() {
-        mId = UUID.randomUUID();
+        this(UUID.randomUUID());
+        //mId = UUID.randomUUID();
+        //mDate = new Date();
+    }
+
+    public Session(UUID id) {
+        mId = id;
         mDate = new Date();
     }
 

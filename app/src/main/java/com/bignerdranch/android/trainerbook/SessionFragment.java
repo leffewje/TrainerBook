@@ -44,6 +44,13 @@ public class SessionFragment extends Fragment {
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+
+        SessionGroup.get(getActivity()).updateSession(mSession);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_session, container, false);
 

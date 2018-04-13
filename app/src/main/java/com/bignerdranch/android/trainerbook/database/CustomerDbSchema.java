@@ -12,7 +12,7 @@ public class CustomerDbSchema {
         }
     }
 
-    /*public static final class SessionTable {
+    public static final class SessionTable {
         public static final String NAME = "sessions";
 
         public static final class Cols {
@@ -22,5 +22,5 @@ public class CustomerDbSchema {
             public static final String COMPLETED = "completed";
             public static final String SIGN = "sign";
         }
-    }*/
+    }
 }

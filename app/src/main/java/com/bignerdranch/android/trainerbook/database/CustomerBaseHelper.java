@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.bignerdranch.android.trainerbook.database.CustomerDbSchema.CustomerTable;
+import com.bignerdranch.android.trainerbook.database.CustomerDbSchema.SessionTable;
 
 public class CustomerBaseHelper extends SQLiteOpenHelper {
     private static final int VERSION = 1;
@@ -16,6 +17,16 @@ public class CustomerBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
+        db.execSQL("create table " + SessionTable.NAME + "(" +
+                " _id integer primary key autoincrement, " +
+                SessionTable.Cols.UUID + ", " +
+                SessionTable.Cols.TITLE + ", " +
+                SessionTable.Cols.DATE + ", " +
+                SessionTable.Cols.COMPLETED + ", " +
+                SessionTable.Cols.SIGN +
+                ")"
+        );
         db.execSQL("create table " + CustomerTable.NAME + "(" +
                 " _id integer primary key autoincrement, " +
                 CustomerTable.Cols.UUID + ", " +
@@ -24,6 +35,7 @@ public class CustomerBaseHelper extends SQLiteOpenHelper {
                 CustomerTable.Cols.BILLING +
                 ")"
         );
+
     }
 
     @Override
