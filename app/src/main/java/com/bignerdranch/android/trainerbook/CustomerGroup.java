@@ -10,6 +10,7 @@ import com.bignerdranch.android.trainerbook.database.CustomerCursorWrapper;
 import com.bignerdranch.android.trainerbook.database.CustomerDbSchema;
 import com.bignerdranch.android.trainerbook.database.CustomerDbSchema.CustomerTable;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -88,6 +89,11 @@ public class CustomerGroup {
         } finally {
             cursor.close();
         }
+    }
+
+    public File getPhotoFile(Customer customer) {
+        File filesDir = mContext.getFilesDir();
+        return new File(filesDir, customer.getPhotoFilename());
     }
 
     public void updateCustomer(Customer customer) {

@@ -71,4 +71,8 @@ public class Customer {
 
         return null;
     }*/
+
+    public String getPhotoFilename() {
+        return "IMG_" + getId().toString() + ".jpg";
+    }
 }
