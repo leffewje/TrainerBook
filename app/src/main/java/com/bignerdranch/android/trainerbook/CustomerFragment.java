@@ -36,6 +36,7 @@ public class CustomerFragment extends Fragment {
     private ImageButton mPhotoButton;
     private ImageView mPhotoView;
     private File mPhotoFile;
+    private ImageButton mAddSessionButton;
 
     public static CustomerFragment newInstance(UUID customerId) {
         Bundle args = new Bundle();
@@ -142,6 +143,18 @@ public class CustomerFragment extends Fragment {
 
         mPhotoView = (ImageView) v.findViewById(R.id.customer_photo);
         updatePhotoView();
+
+        mAddSessionButton = (ImageButton) v.findViewById(R.id.add_session_button);
+        mAddSessionButton.setEnabled(true);
+        mAddSessionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Session session = new Session();
+                SessionGroup.get(getActivity()).addSession(session);
+                Intent intent3 = SessionActivity.newIntent(getActivity(), session.getId());
+                startActivity(intent3);
+            }
+        });
 
         return v;
     }

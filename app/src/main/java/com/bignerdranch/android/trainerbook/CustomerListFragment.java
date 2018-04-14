@@ -1,6 +1,7 @@
 package com.bignerdranch.android.trainerbook;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -13,8 +14,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.File;
 import java.util.List;
 
 public class CustomerListFragment extends Fragment {
@@ -91,6 +94,8 @@ public class CustomerListFragment extends Fragment {
         private TextView mNameTextView;
         private TextView mDateTextView;
         private Customer mCustomer;
+        private ImageView mPhotoView;
+        private File mPhotoFile;
 
         public CustomerHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.list_item_customer, parent, false));
@@ -98,12 +103,20 @@ public class CustomerListFragment extends Fragment {
 
             mNameTextView = (TextView) itemView.findViewById(R.id.customer_name);
             mDateTextView = (TextView) itemView.findViewById(R.id.customer_date);
+            mPhotoView = (ImageView) itemView.findViewById(R.id.customer_photo);
         }
 
         public void bind(Customer customer) {
             mCustomer = customer;
             mNameTextView.setText(mCustomer.getName());
             mDateTextView.setText(mCustomer.getDate().toString());
+            mPhotoFile = CustomerGroup.get(getActivity()).getPhotoFile(mCustomer);
+            if (mPhotoFile == null || !mPhotoFile.exists()) {
+                mPhotoView.setImageDrawable(null);
+            } else {
+                Bitmap bitmap = PictureUtils.getScaledBitmap(mPhotoFile.getPath(), getActivity());
+                mPhotoView.setImageBitmap(bitmap);
+            }
         }
 
         @Override
@@ -144,4 +157,13 @@ public class CustomerListFragment extends Fragment {
             mCustomers = customers;
         }
     }
+
+    /*private void updatePhotoView() {
+        if (mPhotoFile == null || !mPhotoFile.exists()) {
+            mPhotoView.setImageDrawable(null);
+        } else {
+            Bitmap bitmap = PictureUtils.getScaledBitmap(mPhotoFile.getPath(), getActivity());
+            mPhotoView.setImageBitmap(bitmap);
+        }
+    }*/
 }
