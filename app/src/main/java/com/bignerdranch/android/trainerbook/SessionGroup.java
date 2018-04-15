@@ -1,7 +1,9 @@
 package com.bignerdranch.android.trainerbook;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -121,6 +123,9 @@ public class SessionGroup {
         values.put(SessionTable.Cols.DATE, session.getDate().getTime());
         values.put(SessionTable.Cols.COMPLETED, session.isComplete() ? 1 : 0);
         values.put(SessionTable.Cols.SIGN, session.getSign());
+        values.put(SessionTable.Cols.SESSION_CUSTOMER_ID, session.getSessionCustomerId().toString());
+        values.put(SessionTable.Cols.PRICE, session.getPrice());
+        values.put(SessionTable.Cols.PAID, session.isPaid() ? 1 : 0);
 
         return values;
     }

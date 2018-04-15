@@ -1,6 +1,8 @@
 package com.bignerdranch.android.trainerbook;
 
+import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Random;
 import java.util.UUID;
 
 public class Session {
@@ -9,16 +11,25 @@ public class Session {
     private Date mDate;
     private boolean mComplete;
     private String mSign;
+    private UUID mSessionCustomerId;
+    private String mPrice;
+    private boolean mPaid;
 
-    public Session() {
-        this(UUID.randomUUID());
+    public Session(UUID sessionCustomerId) {
+        this(UUID.randomUUID(), sessionCustomerId);
         //mId = UUID.randomUUID();
         //mDate = new Date();
     }
 
-    public Session(UUID id) {
+    public Session(UUID id, UUID sessionCustomerId) {
         mId = id;
+        //mId = UUID.randomUUID();
         mDate = new Date();
+        mSessionCustomerId = sessionCustomerId;
+        Random rand = new Random();
+        Double price = 1 + 99*rand.nextDouble();
+        mPrice = String.format("%.2f", price);
+        mPaid = false;
     }
 
     public UUID getId() {
@@ -55,5 +66,25 @@ public class Session {
 
     public void setSign(String sign) {
         mSign = sign;
+    }
+
+    public UUID getSessionCustomerId() {
+        return mSessionCustomerId;
+    }
+
+    public String getPrice() {
+        return mPrice;
+    }
+
+    public void setPrice(String price) {
+        mPrice = price;
+    }
+
+    public boolean isPaid() {
+        return mPaid;
+    }
+
+    public void setPaid(boolean paid) {
+        mPaid = paid;
     }
 }

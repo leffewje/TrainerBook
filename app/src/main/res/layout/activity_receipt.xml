@@ -18,13 +18,6 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/print"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="@string/print_text"/>
-
-        <Button
             android:id="@+id/email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,5 +30,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/receipt_label" />
+
+    <TextView
+        android:id="@+id/receipt_session_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16pt"/>
+
+    <TextView
+        android:id="@+id/receipt_session_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16pt" />
+
+    <TextView
+        android:id="@+id/receipt_session_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="12pt" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="12pt"
+        android:text="@string/receipt_confirmation"/>
 
 </LinearLayout>

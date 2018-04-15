@@ -45,7 +45,7 @@ public class SessionListFragment extends Fragment {
         updateUI();
     }
 
-    @Override
+    /*@Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.fragment_session_list, menu);
@@ -70,7 +70,7 @@ public class SessionListFragment extends Fragment {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
+    }*/
 
     private void updateUI() {
         SessionGroup sessionGroup = SessionGroup.get(getActivity());

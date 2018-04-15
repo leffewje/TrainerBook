@@ -1,5 +1,6 @@
 package com.bignerdranch.android.trainerbook;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -9,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -27,6 +29,10 @@ import java.util.UUID;
 public class CustomerFragment extends Fragment {
     private static final String ARG_CUSTOMER_ID = "customer_id";
     private static final int REQUEST_PHOTO = 2;
+    private static final String[] CAMERA_PERMISSIONS = new String[] {
+            Manifest.permission.CAMERA
+    };
+    private static final int REQUEST_CAMERA_PERMISSIONS = 0;
 
     private Customer mCustomer;
     private EditText mNameField;
@@ -121,7 +127,10 @@ public class CustomerFragment extends Fragment {
         mPhotoButton = (ImageButton) v.findViewById(R.id.customer_camera);
         final Intent captureImage = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         //boolean canTakePhoto = mPhotoFile != null && captureImage.resolveActivity(packageManager) != null;
-        mPhotoButton.setEnabled(true/*canTakePhoto*/);
+        //mPhotoButton.setEnabled(true/*canTakePhoto*/);
+        if(!canTakePhoto()) {
+            requestPermissions(CAMERA_PERMISSIONS, REQUEST_CAMERA_PERMISSIONS);
+        }
 
         mPhotoButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,7 +158,7 @@ public class CustomerFragment extends Fragment {
         mAddSessionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Session session = new Session();
+                Session session = new Session(mCustomer.getId());
                 SessionGroup.get(getActivity()).addSession(session);
                 Intent intent3 = SessionActivity.newIntent(getActivity(), session.getId());
                 startActivity(intent3);
@@ -157,6 +166,18 @@ public class CustomerFragment extends Fragment {
         });
 
         return v;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults){
+        switch(requestCode) {
+            case REQUEST_CAMERA_PERMISSIONS:
+                if (canTakePhoto()) {
+
+                }
+            default:
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
     }
 
     @Override
@@ -182,5 +203,10 @@ public class CustomerFragment extends Fragment {
             Bitmap bitmap = PictureUtils.getScaledBitmap(mPhotoFile.getPath(), getActivity());
             mPhotoView.setImageBitmap(bitmap);
         }
+    }
+
+    private boolean canTakePhoto() {
+        int result = ContextCompat.checkSelfPermission(getActivity(), CAMERA_PERMISSIONS[0]);
+        return result == PackageManager.PERMISSION_GRANTED;
     }
 }

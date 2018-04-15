@@ -157,13 +157,4 @@ public class CustomerListFragment extends Fragment {
             mCustomers = customers;
         }
     }
-
-    /*private void updatePhotoView() {
-        if (mPhotoFile == null || !mPhotoFile.exists()) {
-            mPhotoView.setImageDrawable(null);
-        } else {
-            Bitmap bitmap = PictureUtils.getScaledBitmap(mPhotoFile.getPath(), getActivity());
-            mPhotoView.setImageBitmap(bitmap);
-        }
-    }*/
 }

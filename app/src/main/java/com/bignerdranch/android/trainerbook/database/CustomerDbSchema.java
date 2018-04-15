@@ -21,6 +21,9 @@ public class CustomerDbSchema {
             public static final String DATE = "date";
             public static final String COMPLETED = "completed";
             public static final String SIGN = "sign";
+            public static final String SESSION_CUSTOMER_ID = "session_customer_id";
+            public static final String PRICE = "price";
+            public static final String PAID = "paid";
         }
     }
 }

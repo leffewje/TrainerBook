@@ -26,7 +26,7 @@
 
     <string name="logged_in_string">Logged in: </string>
     <string name="print_text">Print</string>
-    <string name="email_text">Send to Email</string>
+    <string name="email_text">Send via Email, Messenger, Etc.</string>
     <string name="receipt_label">Receipt</string>
     <string name="billing_hint">Enter billing information</string>
     <string name="session_label">Session name</string>
@@ -39,4 +39,10 @@
     <string name="new_session">New Session</string>
     <string name="save_button">Save</string>
     <string name="add_sessions">Sessions:</string>
+    <string name="receipt_confirmation">Paid</string>
+    <string name="unpaid_session">This session has not yet been paid for...</string>
+    <string name="pay_button">Pay $%1$s</string>
+    <string name="payment_successful">Payment successfully made!</string>
+    <string name="receipt_subject">Trainer Book Receipt</string>
+    <string name="chooser_label">Send receipt via</string>
 </resources>

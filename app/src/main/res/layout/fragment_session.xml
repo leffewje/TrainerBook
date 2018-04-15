@@ -42,6 +42,19 @@
         android:hint="@string/sign_here" />
 
     <Button
+        android:id="@+id/save_session"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/save_button"
+        android:layout_marginBottom="32dp" />
+
+    <Button
+        android:id="@+id/pay_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <Button
         android:id="@+id/receipt_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

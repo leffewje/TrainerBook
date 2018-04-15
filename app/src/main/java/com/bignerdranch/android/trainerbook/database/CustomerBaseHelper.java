@@ -24,7 +24,10 @@ public class CustomerBaseHelper extends SQLiteOpenHelper {
                 SessionTable.Cols.TITLE + ", " +
                 SessionTable.Cols.DATE + ", " +
                 SessionTable.Cols.COMPLETED + ", " +
-                SessionTable.Cols.SIGN +
+                SessionTable.Cols.SIGN + ", " +
+                SessionTable.Cols.SESSION_CUSTOMER_ID + ", " +
+                SessionTable.Cols.PRICE + ", " +
+                SessionTable.Cols.PAID +
                 ")"
         );
         db.execSQL("create table " + CustomerTable.NAME + "(" +

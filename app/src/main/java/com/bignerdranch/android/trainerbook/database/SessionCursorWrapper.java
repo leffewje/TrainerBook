@@ -20,12 +20,17 @@ public class SessionCursorWrapper extends CursorWrapper {
         long date = getLong(getColumnIndex(SessionTable.Cols.DATE));
         int isCompleted = getInt(getColumnIndex(SessionTable.Cols.COMPLETED));
         String sign = getString(getColumnIndex(SessionTable.Cols.SIGN));
+        String sessionCustomerId = getString(getColumnIndex(SessionTable.Cols.SESSION_CUSTOMER_ID));
+        String price = getString(getColumnIndex(SessionTable.Cols.PRICE));
+        int isPaid = getInt(getColumnIndex(SessionTable.Cols.PAID));
 
-        Session session = new Session(UUID.fromString(uuidString));
+        Session session = new Session(UUID.fromString(uuidString), UUID.fromString(sessionCustomerId));
         session.setTitle(title);
         session.setDate(new Date(date));
         session.setComplete(isCompleted != 0);
         session.setSign(sign);
+        session.setPrice(price);
+        session.setPaid(isPaid != 0);
 
         return session;
     }
