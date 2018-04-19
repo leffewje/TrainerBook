@@ -1,6 +1,5 @@
 package com.bignerdranch.android.trainerbook;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Random;
 import java.util.UUID;
@@ -17,13 +16,10 @@ public class Session {
 
     public Session(UUID sessionCustomerId) {
         this(UUID.randomUUID(), sessionCustomerId);
-        //mId = UUID.randomUUID();
-        //mDate = new Date();
     }
 
     public Session(UUID id, UUID sessionCustomerId) {
         mId = id;
-        //mId = UUID.randomUUID();
         mDate = new Date();
         mSessionCustomerId = sessionCustomerId;
         Random rand = new Random();

@@ -3,22 +3,19 @@ package com.bignerdranch.android.trainerbook;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-
-import android.text.format.DateFormat;
 
 public class ReceiptActivity extends AppCompatActivity {
     private Button mEmailButton;
     private TextView mReceiptSessionTitle;
     private TextView mReceiptSessionDate;
     private TextView mReceiptSessionPrice;
+    private TextView mReceiptSessionCustomerName;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -63,6 +60,9 @@ public class ReceiptActivity extends AppCompatActivity {
         mReceiptSessionTitle = (TextView)findViewById(R.id.receipt_session_title);
         mReceiptSessionTitle.setText((String)getIntent().getSerializableExtra(SessionFragment.EXTRA_SESSION_TITLE));
 
+        mReceiptSessionCustomerName = (TextView)findViewById(R.id.receipt_session_customer_name);
+        mReceiptSessionCustomerName.setText((String)getIntent().getSerializableExtra(SessionFragment.EXTRA_SESSION_CUSTOMER_NAME));
+
         mReceiptSessionDate = (TextView)findViewById(R.id.receipt_session_date);
         mReceiptSessionDate.setText((String)getIntent().getSerializableExtra(SessionFragment.EXTRA_SESSION_DATE));
 
@@ -74,6 +74,8 @@ public class ReceiptActivity extends AppCompatActivity {
 
     private String getReceipt() {
         String receipt = ((String)getIntent().getSerializableExtra(SessionFragment.EXTRA_SESSION_TITLE));
+        receipt = receipt.concat("\n");
+        receipt = receipt.concat((String)getIntent().getSerializableExtra(SessionFragment.EXTRA_SESSION_CUSTOMER_NAME));
         receipt = receipt.concat("\n");
         receipt = receipt.concat((String)getIntent().getSerializableExtra(SessionFragment.EXTRA_SESSION_DATE));
         receipt = receipt.concat("\n$");

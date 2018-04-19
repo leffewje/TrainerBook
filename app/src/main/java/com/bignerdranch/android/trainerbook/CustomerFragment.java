@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.text.Editable;
@@ -23,6 +24,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import java.io.File;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -33,6 +35,8 @@ public class CustomerFragment extends Fragment {
             Manifest.permission.CAMERA
     };
     private static final int REQUEST_CAMERA_PERMISSIONS = 0;
+    private static final String DIALOG_DATE = "DialogDate";
+    private static final int REQUEST_DATE = 1;
 
     private Customer mCustomer;
     private EditText mNameField;
@@ -93,8 +97,16 @@ public class CustomerFragment extends Fragment {
         });
 
         mDateButton = (Button) v.findViewById(R.id.customer_date);
-        mDateButton.setText(mCustomer.getDate().toString());
-        mDateButton.setEnabled(false);
+        updateDate();
+        mDateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager manager = getFragmentManager();
+                DatePickerFragment dialog = DatePickerFragment.newInstance(mCustomer.getDate());
+                dialog.setTargetFragment(CustomerFragment.this, REQUEST_DATE);
+                dialog.show(manager, DIALOG_DATE);
+            }
+        });
 
         mBilling = (EditText) v.findViewById(R.id.billing);
         mBilling.setText(mCustomer.getBilling());
@@ -126,8 +138,6 @@ public class CustomerFragment extends Fragment {
 
         mPhotoButton = (ImageButton) v.findViewById(R.id.customer_camera);
         final Intent captureImage = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        //boolean canTakePhoto = mPhotoFile != null && captureImage.resolveActivity(packageManager) != null;
-        //mPhotoButton.setEnabled(true/*canTakePhoto*/);
         if(!canTakePhoto()) {
             requestPermissions(CAMERA_PERMISSIONS, REQUEST_CAMERA_PERMISSIONS);
         }
@@ -193,7 +203,15 @@ public class CustomerFragment extends Fragment {
             getActivity().revokeUriPermission(uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
 
             updatePhotoView();
+        } else if (requestCode == REQUEST_DATE) {
+            Date date = (Date) data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
+            mCustomer.setDate(date);
+            updateDate();
         }
+    }
+
+    private void updateDate() {
+        mDateButton.setText(mCustomer.getDate().toString());
     }
 
     private void updatePhotoView() {

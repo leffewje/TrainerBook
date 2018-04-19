@@ -3,19 +3,14 @@ package com.bignerdranch.android.trainerbook;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.List;
-import java.util.UUID;
 
 public class SessionListFragment extends Fragment {
     private RecyclerView mSessionRecyclerView;
@@ -44,33 +39,6 @@ public class SessionListFragment extends Fragment {
         super.onResume();
         updateUI();
     }
-
-    /*@Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.fragment_session_list, menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()) {
-            case R.id.new_session:
-                Session session = new Session();
-                SessionGroup.get(getActivity()).addSession(session);
-                Intent intent = SessionActivity.newIntent(getActivity(), session.getId());
-                startActivity(intent);
-                return true;
-            //case R.id.logoff:
-            //    FragmentManager manager = getFragmentManager();
-            //    LogoffDialog logoffDialog = new LogoffDialog();
-             //   logoffDialog.show(manager, "Logging Off");
-             //   Intent intent1 = new Intent(getActivity(), LoginActivity.class);
-             //   startActivity(intent1);
-             //   return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }*/
 
     private void updateUI() {
         SessionGroup sessionGroup = SessionGroup.get(getActivity());

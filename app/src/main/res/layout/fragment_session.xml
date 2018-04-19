@@ -24,6 +24,13 @@
         android:layout_height="wrap_content"
         android:hint="@string/session_hint"/>
 
+    <TextView
+        android:id="@+id/session_customer_name"
+        style="?android:listSeparatorTextViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="10pt"/>
+
     <Button
         android:id="@+id/session_date"
         android:layout_width="match_parent"

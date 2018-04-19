@@ -29,6 +29,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -335,10 +336,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
 
             if (success) {
+                //Trainer Book, successful login, move to home page
+                Toast.makeText(LoginActivity.this, R.string.login_success, Toast.LENGTH_SHORT).show();
                 Intent intent1 = new Intent(LoginActivity.this, CustomerListActivity.class);
                 startActivity(intent1);
-                //finish();
             } else {
+                //Trainer Book, unsuccessful login
+                Toast.makeText(LoginActivity.this, R.string.login_fail, Toast.LENGTH_LONG).show();
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
             }

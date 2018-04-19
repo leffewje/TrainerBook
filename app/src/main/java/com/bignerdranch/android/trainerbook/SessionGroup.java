@@ -1,14 +1,11 @@
 package com.bignerdranch.android.trainerbook;
 
-import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.bignerdranch.android.trainerbook.database.CustomerBaseHelper;
-import com.bignerdranch.android.trainerbook.database.CustomerDbSchema;
 import com.bignerdranch.android.trainerbook.database.CustomerDbSchema.SessionTable;
 import com.bignerdranch.android.trainerbook.database.SessionCursorWrapper;
 
@@ -19,7 +16,6 @@ import java.util.UUID;
 public class SessionGroup {
     private static SessionGroup sSessionGroup;
 
-    //private List<Session> mSessions;
     private Context mContext;
     private SQLiteDatabase mDatabase;
 
@@ -33,25 +29,15 @@ public class SessionGroup {
     private SessionGroup(Context context) {
         mContext = context.getApplicationContext();
         mDatabase = new CustomerBaseHelper(mContext).getWritableDatabase();
-        //mSessions = new ArrayList<>();
-        /*for (int i = 0; i < 25; i++) {
-            Session session = new Session();
-            session.setTitle("Session #" + i);
-            session.setComplete(i % 2 == 0);
-            mSessions.add(session);
-        }*/
     }
 
     public void addSession(Session s){
-        //mSessions.add(s);
         ContentValues values = getContentValues(s);
 
         mDatabase.insert(SessionTable.NAME, null, values);
     }
 
     public List<Session> getSessions() {
-        //return mSessions;
-        //return new ArrayList<>();
         List<Session> sessions = new ArrayList<>();
 
         SessionCursorWrapper cursor = querySessions(null, null);
@@ -70,13 +56,6 @@ public class SessionGroup {
     }
 
     public Session getSession(UUID id) {
-        /*for (Session session : mSessions) {
-            if (session.getId().equals(id)){
-                return session;
-            }
-        }*/
-
-        //return null;
         SessionCursorWrapper cursor = querySessions(
                 SessionTable.Cols.UUID + " = ?",
                 new String[] {id.toString()}

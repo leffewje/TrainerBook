@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.bignerdranch.android.trainerbook.database.CustomerBaseHelper;
 import com.bignerdranch.android.trainerbook.database.CustomerCursorWrapper;
-import com.bignerdranch.android.trainerbook.database.CustomerDbSchema;
 import com.bignerdranch.android.trainerbook.database.CustomerDbSchema.CustomerTable;
 
 import java.io.File;
@@ -18,7 +17,6 @@ import java.util.UUID;
 public class CustomerGroup {
     private static CustomerGroup sCustomerGroup;
 
-    //private List<Customer> mCustomers;
     private Context mContext;
     private SQLiteDatabase mDatabase;
 
@@ -33,23 +31,15 @@ public class CustomerGroup {
         mContext = context.getApplicationContext();
         mDatabase = new CustomerBaseHelper(mContext)
                 .getWritableDatabase();
-        /*mCustomers = new ArrayList<>();
-        for (int i = 0; i < 25; i++) {
-            Customer customer = new Customer();
-            customer.setName("Customer #" + i);
-            mCustomers.add(customer);
-        }*/
     }
 
     public void addCustomer(Customer c) {
-        //mCustomers.add(c);
         ContentValues values = getContentValues(c);
 
         mDatabase.insert(CustomerTable.NAME, null, values);
     }
 
     public List<Customer> getCustomers() {
-        //return mCustomers;
         List<Customer> customers = new ArrayList<>();
 
         CustomerCursorWrapper cursor = queryCustomers(null, null);
@@ -68,11 +58,6 @@ public class CustomerGroup {
     }
 
     public Customer getCustomer(UUID id) {
-        /*for (Customer customer : mCustomers) {
-            if (customer.getId().equals(id)) {
-                return customer;
-            }
-        }*/
 
         CustomerCursorWrapper cursor = queryCustomers(
                 CustomerTable.Cols.UUID + " = ?",
